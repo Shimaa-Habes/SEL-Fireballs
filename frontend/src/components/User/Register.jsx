@@ -53,28 +53,22 @@ const Register = () => {
         formData.set("email", email);
         formData.set("gender", gender);
         formData.set("password", password);
-        formData.set("avatar", avatar);
+        // formData.set("avatar", avatar);
 
         dispatch(registerUser(formData));
     }
 
     const handleDataChange = (e) => {
-        if (e.target.name === "avatar") {
-            const reader = new FileReader();
+    if (e.target.name === "avatar") {
+        const file = e.target.files[0];
 
-            reader.onload = () => {
-                if (reader.readyState === 2) {
-                    setAvatarPreview(reader.result);
-                    setAvatar(reader.result);
-                }
-            };
-
-            reader.readAsDataURL(e.target.files[0]);
-
-        } else {
-            setUser({ ...user, [e.target.name]: e.target.value });
-        }
+        setAvatar(file); // نرسل File مش string
+        setAvatarPreview(URL.createObjectURL(file)); // للعرض فقط
+    } else {
+        setUser({ ...user, [e.target.name]: e.target.value });
     }
+};
+
 
     useEffect(() => {
         if (error) {
