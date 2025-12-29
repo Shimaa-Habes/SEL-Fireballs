@@ -10,7 +10,8 @@
   "scripts": {
     "dev": "nodemon backend/server.js",
     "start": "node backend/server.js",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false && npm install --prefix frontend && npm run build --prefix frontend"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false && npm install --prefix frontend && npm run build --prefix frontend",
+    "test": "jest"
   },
   "author": "Jigar Sable",
   "license": "ISC",
@@ -30,5 +31,9 @@
     "stripe": "^8.200.0",
     "uuid": "^8.3.2",
     "validator": "^13.7.0"
+  },
+  "devDependencies": {
+    "jest": "^30.2.0",
+    "supertest": "^7.1.4"
   }
 }
